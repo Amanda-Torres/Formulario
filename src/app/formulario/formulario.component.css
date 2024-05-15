@@ -7,7 +7,6 @@ mat-card{
 }
 
 mat-card-header{
-    margin: 20px;
     display: flex;
     align-items: center;
 }
@@ -23,7 +22,7 @@ mat-card-title{
 }
 
 mat-card-subtitle{
-    margin: 25px;
+    margin: 20px;
     font-size: 18px;
 }
 

@@ -48,6 +48,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class FormularioComponent {
   /* Variáveis do form control */
+
   fullName = new FormControl('', [
     Validators.required,
     Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/),
@@ -58,21 +59,55 @@ export class FormularioComponent {
     Validators.pattern(/^\d{3}.\d{3}.\d{3}-\d{2}$/),
   ]);
 
+  date = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/),
+  ]);
+
   email = new FormControl('', [Validators.required, Validators.email]);
+
+  cel = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^\(\d{2}\)\d{5}-\d{4}$/),
+  ]);
+
+  cep = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^\d{5}-\d{3}$/),
+  ]);
 
   /* Variáveis da mensagem de erro */
   errorMessageFullName = '';
   errorMessageCpf = '';
+  errorMessageDate = '';
   errorMessageEmail = '';
+  errorMessageCel = '';
+  errorMessageCep = '';
 
   constructor() {
     merge(this.fullName.statusChanges, this.fullName.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessageFullName());
 
+    merge(this.cpf.statusChanges, this.cpf.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageCpf());
+
+    merge(this.date.statusChanges, this.date.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageDate());
+
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessageEmail());
+
+    merge(this.cel.statusChanges, this.cel.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageCel());
+
+    merge(this.cep.statusChanges, this.cep.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageCep());
   }
 
   /* Funções de mensagem de erro */
@@ -87,6 +122,26 @@ export class FormularioComponent {
     }
   }
 
+  updateErrorMessageCpf() {
+    if (this.cpf.hasError('required')) {
+      this.errorMessageCpf = 'Campo obrigatório';
+    } else if (this.cpf.hasError('pattern')) {
+      this.errorMessageCpf = 'Cpf inválido';
+    } else {
+      this.errorMessageCpf = '';
+    }
+  }
+
+  updateErrorMessageDate() {
+    if (this.date.hasError('required')) {
+      this.errorMessageDate = 'Campo obrigatório';
+    } else if (this.date.hasError('pattern')) {
+      this.errorMessageDate = 'Data inválida';
+    } else {
+      this.errorMessageDate = '';
+    }
+  }
+
   updateErrorMessageEmail() {
     if (this.email.hasError('required')) {
       this.errorMessageEmail = 'Campo obrigátorio';
@@ -94,6 +149,26 @@ export class FormularioComponent {
       this.errorMessageEmail = 'E-mail inválido';
     } else {
       this.errorMessageEmail = '';
+    }
+  }
+
+  updateErrorMessageCel() {
+    if (this.cel.hasError('required')) {
+      this.errorMessageCel = 'Campo obrigátorio';
+    } else if (this.cel.hasError('pattern')) {
+      this.errorMessageCel = 'Celular inválido';
+    } else {
+      this.errorMessageCel = '';
+    }
+  }
+
+  updateErrorMessageCep() {
+    if (this.cep.hasError('required')) {
+      this.errorMessageCep = 'Campo obrigátorio';
+    } else if (this.cep.hasError('pattern')) {
+      this.errorMessageCep = 'CEP inválido';
+    } else {
+      this.errorMessageCep = '';
     }
   }
 }

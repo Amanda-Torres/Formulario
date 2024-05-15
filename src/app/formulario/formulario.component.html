@@ -18,20 +18,34 @@
             </mat-form-field>
             <mat-form-field class="cpf">
                 <mat-label>CPF</mat-label>
-                <input matInput required
-                placeholder="000.000.000-00">
+                <input matInput
+                placeholder="000.000.000-00"
+                       [formControl]="cpf"
+                       (blur)="updateErrorMessageCpf()"
+                       required>
+                @if (cpf.invalid) {
+                  <mat-error>{{errorMessageCpf}}</mat-error>
+                }
             </mat-form-field>
         </div>
         
         <div class="content">
             <mat-form-field class="data">
                 <mat-label>Data de Nascimento</mat-label>
-                <input matInput [matDatepicker]="picker">
+                <input matInput 
+                [matDatepicker]="picker"
+                [formControl]="date"
+                       (blur)="updateErrorMessageDate()"
+                       required>
+                @if (date.invalid) {
+                  <mat-error>{{errorMessageDate}}</mat-error>
+                }
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-              <mat-form-field class="email">
+            </mat-form-field>
+              
+            <mat-form-field class="email">
                 <mat-label>Email</mat-label>
                 <input matInput
                        placeholder="pat@example.com"
@@ -41,48 +55,67 @@
                 @if (email.invalid) {
                   <mat-error>{{errorMessageEmail}}</mat-error>
                 }
-              </mat-form-field>
-              <mat-form-field class="telefone">
-                  <mat-label>Telefone</mat-label>
+            </mat-form-field>
+              
+            <mat-form-field class="celular">
+                  <mat-label>Celular</mat-label>
                   <span matTextPrefix>+55 &nbsp;</span>
-                  <input type="tel" matInput placeholder="(55)55555-5555">
-              </mat-form-field>             
+                  <input type="tel" matInput 
+                        placeholder="(55)55555-5555"
+                        [formControl]="cel"
+                        (blur)="updateErrorMessageCel()"
+                        required>
+                @if (cel.invalid) {
+                  <mat-error>{{errorMessageCel}}</mat-error>
+                }
+            </mat-form-field>             
         </div>
 
     <mat-card-subtitle>Endereço</mat-card-subtitle>
         <div class="content">
             <mat-form-field class="cep">
                 <mat-label>CEP</mat-label>
-                <input matInput placeholder="00.000-000" required aria-required="true">
+                <input matInput 
+                        placeholder="00000-000" 
+                        [formControl]="cep"
+                        (blur)="updateErrorMessageCep()"
+                        required>
+                @if (cep.invalid) {
+                  <mat-error>{{errorMessageCep}}</mat-error>
+                }
             </mat-form-field>
+
             <mat-form-field class="estado">
                 <mat-label>Estado</mat-label>
-                <input matInput required aria-required="true">
+                <input matInput disabled="true">
             </mat-form-field>
+
             <mat-form-field class="cidade">
                 <mat-label>Cidade</mat-label>
-                <input matInput required aria-required="true">
+                <input matInput disabled="true">
             </mat-form-field>
         </div>
         <div class="content">
             <mat-form-field class="bairro">
                 <mat-label>Bairro</mat-label>
-                <input matInput required aria-required="true">
+                <input matInput disabled="true">
             </mat-form-field>
+
             <mat-form-field class="rua">
                 <mat-label>Rua</mat-label>
-                <input matInput required aria-required="true">
+                <input matInput disabled="true">
             </mat-form-field>
+
             <mat-form-field class="numero">
                 <mat-label>Número</mat-label>
-                <input matInput required aria-required="true">
+                <input matInput disabled="true">
             </mat-form-field>
         </div>
 
     </mat-card-content>
     <mat-card-actions> 
         <div class="btn">
-            <button mat-raised-button disabled>Enviar</button>
+            <button mat-raised-button color="primary" disabled="true">Enviar</button>
         </div>
     </mat-card-actions>	
 </mat-card>
