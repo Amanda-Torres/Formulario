@@ -1,0 +1,62 @@
+mat-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100vh;
+}
+
+mat-card-header{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+img{
+    width: 40px;
+    margin-left: 10px;
+}
+
+
+mat-card-title{
+    font-size: 24px;
+}
+
+mat-card-subtitle{
+    margin: 25px;
+    font-size: 18px;
+}
+
+mat-form-field{
+    margin: 10px;
+}
+
+.Name{
+    width: 506px;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data, .email, .cep, .estado, .bairro{
+    width: 240px;
+}
+
+.cpf, .cidade{
+    width: 250px;
+}
+
+.rua{
+    width: 300px;
+}
+
+.btn{
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
