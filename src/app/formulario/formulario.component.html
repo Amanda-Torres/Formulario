@@ -87,28 +87,58 @@
 
             <mat-form-field class="estado">
                 <mat-label>Estado</mat-label>
-                <input matInput disabled="true">
+                <input matInput
+                        [formControl]="estado"
+                        (blur)="updateErrorMessageEstado()"
+                        required>
+                @if (estado.invalid) {
+                  <mat-error>{{errorMessageEstado}}</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field class="cidade">
                 <mat-label>Cidade</mat-label>
-                <input matInput disabled="true">
+                <input matInput
+                        [formControl]="cidade"
+                        (blur)="updateErrorMessageCidade()"
+                        required>
+                @if (cidade.invalid) {
+                  <mat-error>{{errorMessageCidade}}</mat-error>
+                }
             </mat-form-field>
         </div>
         <div class="content">
             <mat-form-field class="bairro">
                 <mat-label>Bairro</mat-label>
-                <input matInput disabled="true">
+                <input matInput
+                        [formControl]="bairro"
+                        (blur)="updateErrorMessageBairro()"
+                        required>
+                @if (bairro.invalid) {
+                  <mat-error>{{errorMessageBairro}}</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field class="rua">
                 <mat-label>Rua</mat-label>
-                <input matInput disabled="true">
+                <input matInput
+                        [formControl]="rua"
+                        (blur)="updateErrorMessageRua()"
+                        required>
+                @if (rua.invalid) {
+                  <mat-error>{{errorMessageRua}}</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field class="numero">
                 <mat-label>Número</mat-label>
-                <input matInput disabled="true">
+                <input matInput
+                [formControl]="numero"
+                        (blur)="updateErrorMessageNumero()"
+                        required>
+                @if (numero.invalid) {
+                  <mat-error>{{errorMessageNumero}}</mat-error>
+                }
             </mat-form-field>
         </div>
 

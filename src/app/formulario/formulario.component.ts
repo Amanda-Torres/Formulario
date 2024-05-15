@@ -27,6 +27,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 
+/* Import service */
+import { EnderecoService } from './../services/endereco.service';
+
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -76,6 +79,16 @@ export class FormularioComponent {
     Validators.pattern(/^\d{5}-\d{3}$/),
   ]);
 
+  estado = new FormControl('', [Validators.required]);
+
+  cidade = new FormControl('', [Validators.required]);
+
+  bairro = new FormControl('', [Validators.required]);
+
+  rua = new FormControl('', [Validators.required]);
+
+  numero = new FormControl('', [Validators.required]);
+
   /* Variáveis da mensagem de erro */
   errorMessageFullName = '';
   errorMessageCpf = '';
@@ -83,6 +96,11 @@ export class FormularioComponent {
   errorMessageEmail = '';
   errorMessageCel = '';
   errorMessageCep = '';
+  errorMessageEstado = '';
+  errorMessageCidade = '';
+  errorMessageBairro = '';
+  errorMessageRua = '';
+  errorMessageNumero = '';
 
   constructor() {
     merge(this.fullName.statusChanges, this.fullName.valueChanges)
@@ -108,6 +126,26 @@ export class FormularioComponent {
     merge(this.cep.statusChanges, this.cep.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessageCep());
+
+    merge(this.estado.statusChanges, this.estado.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageEstado());
+
+    merge(this.cidade.statusChanges, this.cidade.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageCidade());
+
+    merge(this.bairro.statusChanges, this.bairro.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageBairro());
+
+    merge(this.rua.statusChanges, this.rua.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageRua());
+
+    merge(this.numero.statusChanges, this.numero.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessageNumero());
   }
 
   /* Funções de mensagem de erro */
@@ -169,6 +207,46 @@ export class FormularioComponent {
       this.errorMessageCep = 'CEP inválido';
     } else {
       this.errorMessageCep = '';
+    }
+  }
+
+  updateErrorMessageEstado() {
+    if (this.estado.hasError('required')) {
+      this.errorMessageEstado = 'Campo obrigátorio';
+    } else {
+      this.errorMessageEstado = '';
+    }
+  }
+
+  updateErrorMessageCidade() {
+    if (this.estado.hasError('required')) {
+      this.errorMessageCidade = 'Campo obrigátorio';
+    } else {
+      this.errorMessageCidade = '';
+    }
+  }
+
+  updateErrorMessageBairro() {
+    if (this.bairro.hasError('required')) {
+      this.errorMessageBairro = 'Campo obrigátorio';
+    } else {
+      this.errorMessageBairro = '';
+    }
+  }
+
+  updateErrorMessageRua() {
+    if (this.rua.hasError('required')) {
+      this.errorMessageRua = 'Campo obrigátorio';
+    } else {
+      this.errorMessageRua = '';
+    }
+  }
+
+  updateErrorMessageNumero() {
+    if (this.numero.hasError('required')) {
+      this.errorMessageNumero = 'Campo obrigátorio';
+    } else {
+      this.errorMessageNumero = '';
     }
   }
 }
