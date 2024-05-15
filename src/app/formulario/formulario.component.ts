@@ -62,10 +62,7 @@ export class FormularioComponent {
     Validators.pattern(/^\d{3}.\d{3}.\d{3}-\d{2}$/),
   ]);
 
-  date = new FormControl('', [
-    Validators.required,
-    Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/),
-  ]);
+  date = new FormControl('', [Validators.required]);
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -173,8 +170,6 @@ export class FormularioComponent {
   updateErrorMessageDate() {
     if (this.date.hasError('required')) {
       this.errorMessageDate = 'Campo obrigatório';
-    } else if (this.date.hasError('pattern')) {
-      this.errorMessageDate = 'Data inválida';
     } else {
       this.errorMessageDate = '';
     }

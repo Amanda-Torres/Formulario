@@ -1,27 +1,33 @@
-# App
+<h1 align="center"> 
+	  📋 Furmulário com busca de CEP
+</h1>
+<h4 align="center"> 
+	  🚧 Em Desenvolvimento
+</h4>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+## Sobre
 
-## Development server
+Este projeto demonstra um formulário Angular que coleta informações pessoais e de endereço de um usuário, utilizando o serviço ViaCEP para autocompletar o endereço com base no CEP.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologias Utilizadas
 
-## Code scaffolding
+<div style="text-align: center; display: inline-block">  
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" alt="angular" width="65px">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angularmaterial/angularmaterial-original.svg" alt="material angular" width="55px">
+</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Pré-requisitos
 
-## Build
+Node.js e npm instalados
+Angular CLI instalado `(npm install -g @angular/cli)`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalação
 
-## Running unit tests
+1. Clone este repositório: `git clone https://github.com/seu-usuario/formulario-cep`
+2. Acesse o diretório do projeto: `cd formulario-cep`
+3. Instale as dependências: `npm install`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Execução
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Inicie o servidor de desenvolvimento: `ng serve`
+2. Acesse o aplicativo no navegador: `http://localhost:4200/`
