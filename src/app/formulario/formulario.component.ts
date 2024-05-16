@@ -50,8 +50,9 @@ import { EnderecoService } from './../services/endereco.service';
   styleUrl: './formulario.component.css',
 })
 export class FormularioComponent {
-  /* Variáveis do form control */
+  isDisabled = true;
 
+  /* Variáveis do form control */
   fullName = new FormControl('', [
     Validators.required,
     Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/),
@@ -99,7 +100,7 @@ export class FormularioComponent {
   errorMessageRua = '';
   errorMessageNumero = '';
 
-  constructor() {
+  constructor(private enderecoService: EnderecoService) {
     merge(this.fullName.statusChanges, this.fullName.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessageFullName());
@@ -243,5 +244,21 @@ export class FormularioComponent {
     } else {
       this.errorMessageNumero = '';
     }
+  }
+
+  buscarEnderecoPorCEP() {
+    const cepInput = this.cep.value;
+
+    this.enderecoService
+      .getEndereco(cepInput)
+      .then((endereco) => {
+        this.estado.setValue(endereco.uf);
+        this.cidade.setValue(endereco.cidade);
+        this.bairro.setValue(endereco.bairro);
+        this.rua.setValue(endereco.logradouro);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar endereço:', error);
+      });
   }
 }

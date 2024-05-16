@@ -7,7 +7,7 @@ import { Endereco } from './../models/endereco';
 export class EnderecoService {
   constructor() {}
 
-  getEndereco(cep: string): Promise<Endereco> {
+  getEndereco(cep: string | null): Promise<Endereco> {
     return fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((response) => response.json())
       .then((data) => {
