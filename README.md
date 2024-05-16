@@ -1,5 +1,5 @@
 <h1 align="center"> 
-	  📋 Furmulário com busca de CEP
+	  📋 Furmulário
 </h1>
 <h4 align="center"> 
 	  ✔️ Concluído | V1.0.0
@@ -10,7 +10,7 @@
 Este projeto demonstra um formulário Angular que coleta informações pessoais e de endereço de um usuário, utilizando o serviço ViaCEP para autocompletar o endereço com base no CEP.
 
 <div align="center" >
-  <img src="https://github.com/Amanda-Torres/Formulario/assets/106416909/593f8533-26c1-4c7d-ada5-a53b2121d7c7" width="800">
+  <img src="https://github.com/Amanda-Torres/Formulario/assets/106416909/6cd35be0-6e8d-4cbf-a7de-364f2f3e6adc" width="800">
 </div>
 
 ## Funções 
