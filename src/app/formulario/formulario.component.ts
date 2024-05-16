@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-/* Imports Card */
+/* Import Card */
 import { MatCardModule } from '@angular/material/card';
 
 /* Imports Form */
@@ -16,9 +16,10 @@ import {
 
 /* Imports data form */
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 
-/* Inport form email */
+/* Imports form email */
 import { merge } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -30,10 +31,25 @@ import { MatButtonModule } from '@angular/material/button';
 /* Import service */
 import { EnderecoService } from './../services/endereco.service';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
+    provideMomentDateAdapter(MY_FORMATS),
+  ],
   imports: [
     MatCardModule,
     MatFormFieldModule,
@@ -50,7 +66,7 @@ import { EnderecoService } from './../services/endereco.service';
   styleUrl: './formulario.component.css',
 })
 export class FormularioComponent {
-  isDisabled = true;
+  isDisabled: boolean = true;
 
   /* Variáveis do form control */
   fullName = new FormControl('', [
@@ -77,15 +93,25 @@ export class FormularioComponent {
     Validators.pattern(/^\d{5}-\d{3}$/),
   ]);
 
-  estado = new FormControl('', [Validators.required]);
+  estado = new FormControl({ value: '', disabled: this.isDisabled }, [
+    Validators.required,
+  ]);
 
-  cidade = new FormControl('', [Validators.required]);
+  cidade = new FormControl({ value: '', disabled: this.isDisabled }, [
+    Validators.required,
+  ]);
 
-  bairro = new FormControl('', [Validators.required]);
+  bairro = new FormControl({ value: '', disabled: this.isDisabled }, [
+    Validators.required,
+  ]);
 
-  rua = new FormControl('', [Validators.required]);
+  rua = new FormControl({ value: '', disabled: this.isDisabled }, [
+    Validators.required,
+  ]);
 
-  numero = new FormControl('', [Validators.required]);
+  numero = new FormControl({ value: '', disabled: this.isDisabled }, [
+    Validators.required,
+  ]);
 
   /* Variáveis da mensagem de erro */
   errorMessageFullName = '';
@@ -253,9 +279,14 @@ export class FormularioComponent {
       .getEndereco(cepInput)
       .then((endereco) => {
         this.estado.setValue(endereco.uf);
+        this.estado.enable();
         this.cidade.setValue(endereco.cidade);
+        this.cidade.enable();
         this.bairro.setValue(endereco.bairro);
+        this.bairro.enable();
         this.rua.setValue(endereco.logradouro);
+        this.rua.enable();
+        this.numero.enable();
       })
       .catch((error) => {
         console.error('Erro ao buscar endereço:', error);
