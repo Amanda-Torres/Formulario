@@ -2,7 +2,7 @@
 	  📋 Furmulário com busca de CEP
 </h1>
 <h4 align="center"> 
-	  🚧 Em Desenvolvimento
+	  ✔️ Concluído | V1.0.0
 </h4>
 
 ## Sobre
